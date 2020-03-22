@@ -1,5 +1,6 @@
 package com.justayar.springboot.util;
 
+import com.hazelcast.core.EntryListener;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
 import com.justayar.springboot.constants.ApplicationConstants;
@@ -17,6 +18,9 @@ public class HazelcastManager implements InitializingBean {
     @Autowired
     private HazelcastInstance hazelcastInstance;
 
+    @Autowired
+    private EntryListener mapEntryListener;
+
     private IMap<String,String> hazelcastMap;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -26,6 +30,7 @@ public class HazelcastManager implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
 
         hazelcastMap = hazelcastInstance.getMap(ApplicationConstants.HAZELCAST_MAP);
+        hazelcastMap.addEntryListener(mapEntryListener,true);
         logger.info("Getting Hazelcast map from Hazelcast");
 
     }
