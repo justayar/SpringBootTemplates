@@ -1,7 +1,7 @@
 package com.justayar.springboot.controller;
 
 
-import com.justayar.springboot.util.HazelcastManager;
+import com.justayar.springboot.util.HazelcastMapManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +13,14 @@ public class HazelcastController {
 
 
     @Autowired
-    private HazelcastManager hazelcastManager;
+    private HazelcastMapManager hazelcastMapManager;
 
     @PostMapping("/write")
     public String writeToHazelcast(@RequestParam String key,
                                    @RequestParam String value) {
 
 
-        hazelcastManager.putToMap(key, value);
+        hazelcastMapManager.putToMap(key, value);
 
         return "OK";
 
@@ -30,14 +30,14 @@ public class HazelcastController {
     @GetMapping("/read")
     public String readFromHazelcast(@RequestParam String key) {
 
-        return hazelcastManager.getMapItemWithKey(key);
+        return hazelcastMapManager.getMapItemWithKey(key);
 
     }
 
     @GetMapping("/readAll")
     public Map<String, String> readAllFromHazelcast() {
 
-        return hazelcastManager.getAllMap();
+        return hazelcastMapManager.getAllMap();
 
 
     }
@@ -45,13 +45,13 @@ public class HazelcastController {
     @DeleteMapping("/remove")
     public String removeFromHazelcast(@RequestParam String key){
 
-        hazelcastManager.removeMapItemWithKey(key);
+        hazelcastMapManager.removeMapItemWithKey(key);
         return "OK";
     }
 
     @DeleteMapping("/clear")
     public String clearHazelcast(){
-        hazelcastManager.clearAllMap();
+        hazelcastMapManager.clearAllMap();
         return "OK";
     }
 

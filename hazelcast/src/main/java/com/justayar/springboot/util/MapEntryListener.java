@@ -2,7 +2,7 @@ package com.justayar.springboot.util;
 
 import com.hazelcast.core.EntryEvent;
 import com.hazelcast.core.EntryListener;
-import com.hazelcast.core.MapEvent;
+import com.hazelcast.map.MapEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,6 +50,11 @@ public class MapEntryListener implements EntryListener {
     public void mapEvicted(MapEvent mapEvent) {
 
         logger.info("Map was evicted: {}",mapEvent);
+
+    }
+
+    @Override
+    public void entryExpired(EntryEvent entryEvent) {
 
     }
 }

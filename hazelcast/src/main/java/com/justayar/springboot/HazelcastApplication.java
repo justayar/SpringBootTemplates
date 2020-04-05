@@ -13,6 +13,7 @@ public class HazelcastApplication {
 		return new MapEntryListener();
 	}
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(HazelcastApplication.class, args);
 	}
