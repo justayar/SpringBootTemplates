@@ -18,28 +18,22 @@ public class HazelcastController {
     @PostMapping("/write")
     public String writeToHazelcast(@RequestParam String key,
                                    @RequestParam String value) {
-
-
+        
         hazelcastMapManager.putToMap(key, value);
 
         return "OK";
-
-
     }
 
     @GetMapping("/read")
     public String readFromHazelcast(@RequestParam String key) {
 
         return hazelcastMapManager.getMapItemWithKey(key);
-
     }
 
     @GetMapping("/readAll")
     public Map<String, String> readAllFromHazelcast() {
 
         return hazelcastMapManager.getAllMap();
-
-
     }
 
     @DeleteMapping("/remove")
