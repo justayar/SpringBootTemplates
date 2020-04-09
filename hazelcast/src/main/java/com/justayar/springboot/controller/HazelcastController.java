@@ -18,7 +18,7 @@ public class HazelcastController {
     @PostMapping("/write")
     public String writeToHazelcast(@RequestParam String key,
                                    @RequestParam String value) {
-        
+
         hazelcastMapManager.putToMap(key, value);
 
         return "OK";

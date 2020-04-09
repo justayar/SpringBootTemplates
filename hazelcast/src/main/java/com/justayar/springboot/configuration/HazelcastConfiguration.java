@@ -12,6 +12,7 @@ public class HazelcastConfiguration {
 
     @Bean
     public Config hazelcastConfig(){
+
         Config config = new Config();
         config.setNetworkConfig(getHazelcastNetworkConfig());
         config.setInstanceName("hazelcast-template");

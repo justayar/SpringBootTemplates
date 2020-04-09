@@ -45,6 +45,7 @@ public class HazelcastMapManager implements InitializingBean {
 
         if(key.isEmpty())
             throw new IllegalArgumentException("Key of element which is added to map cannot be empty");
+        
 
         hazelcastMap.set(key, value);
         logger.info("New data added to hazelcast map with key: {}", key);
