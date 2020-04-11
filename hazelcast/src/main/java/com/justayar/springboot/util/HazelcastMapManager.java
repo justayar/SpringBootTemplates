@@ -23,6 +23,9 @@ public class HazelcastMapManager implements InitializingBean {
     @Autowired
     private EntryListener mapEntryListener;
 
+    @Autowired
+    private ApplicationMembershipListener applicationMembershipListener;
+
     private IMap<String,String> hazelcastMap;
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -32,6 +35,8 @@ public class HazelcastMapManager implements InitializingBean {
     public void afterPropertiesSet(){
 
         HazelcastInstance hazelcastInstance = Hazelcast.newHazelcastInstance(hazelcastConfig);
+
+        hazelcastInstance.getCluster().addMembershipListener(applicationMembershipListener);
 
         hazelcastMap = hazelcastInstance.getMap(ApplicationConstants.HAZELCAST_MAP);
         hazelcastMap.addEntryListener(mapEntryListener,true);
@@ -45,7 +50,7 @@ public class HazelcastMapManager implements InitializingBean {
 
         if(key.isEmpty())
             throw new IllegalArgumentException("Key of element which is added to map cannot be empty");
-        
+
 
         hazelcastMap.set(key, value);
         logger.info("New data added to hazelcast map with key: {}", key);

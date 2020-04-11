@@ -15,10 +15,12 @@ public class HazelcastConfiguration {
 
         Config config = new Config();
         config.setNetworkConfig(getHazelcastNetworkConfig());
+        config.setClusterName("hazelcast-cluster");
         config.setInstanceName("hazelcast-template");
         config.setPartitionGroupConfig(getPartitionGroupConfig());
         config.setProperty("hazelcast.health.monitoring.level","NOISY");
         config.addMapConfig(getHazelcastMapConfig());
+
 
         return config;
     }
@@ -94,7 +96,7 @@ public class HazelcastConfiguration {
         tcpIpConfig.setEnabled(true); // You can disable it by passing false to this option.
 
         List<String> memberList = new ArrayList<>();
-        memberList.add("127.0.0.1:5701");
+        memberList.add("127.0.0.1:5900");
         tcpIpConfig.setMembers(memberList);
 
         joinConfig.setTcpIpConfig(tcpIpConfig);
