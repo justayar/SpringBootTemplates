@@ -1,14 +1,14 @@
 package com.justayar.springboot.util;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.justayar.springboot.configuration.RedisConfiguration;
-import com.justayar.springboot.constants.RedisDemoConstants;
 import com.justayar.springboot.domain.StudentCacheObject;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
 import java.util.Map;
 
 @Component
@@ -29,54 +29,64 @@ public class RedisCacheManager implements InitializingBean {
 
     }
 
-    public StudentCacheObject getAllValuesFromHashWithKey(String key){
+    public StudentCacheObject getObjectFromHashWithKey(String key) {
 
         Map<String, String> redisMap = redisClient.hgetAll(key);
 
-        return null;
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.convertValue(redisMap, StudentCacheObject.class);
 
     }
 
-    public Object getValueFromHashWithKey(String key,String valueType){
+    public String getSingleFieldFromHashWithKey(String key, String valueType) {
 
-        return redisClient.hget(key,valueType);
+        return redisClient.hget(key, valueType);
     }
 
-    public void setSingleValueToHashWithKey(String key,String valueType,String value){
+    public void updateObjectInHashWithKey(String key, StudentCacheObject studentCacheObject) {
 
-        redisClient.hset(key,valueType,value);
+        if (studentCacheObject == null)
+            throw new IllegalArgumentException("[(updateObjectInHashWithKey)] Student object cannot be null");
+
+        if (key == null)
+            throw new IllegalArgumentException("[(updateObjectInHashWithKey)] Key cannot be null");
+
+        Map<String, String> studentObjectMap = convertStudentObjectToMapObject(studentCacheObject);
+
+        redisClient.hmset(key, studentObjectMap);
     }
 
-    public void setAllValuesToHashWithKey(String key,StudentCacheObject studentCacheObject){
+    private Map<String, String> convertStudentObjectToMapObject(StudentCacheObject studentCacheObject) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        return objectMapper.convertValue(studentCacheObject, Map.class);
+    }
+
+    public void setNewObjectToHashWithKey(StudentCacheObject studentCacheObject) {
+
+        if (studentCacheObject == null)
+            throw new IllegalArgumentException("[(setNewObjectToHashWithKey)] Student object cannot be null");
+
+        if (studentCacheObject.getStudentId() == null)
+            throw new IllegalArgumentException("[(setNewObjectToHashWithKey)] Student id cannot be null");
+
+        Map<String, String> studentObjectMap = convertStudentObjectToMapObject(studentCacheObject);
+
+        redisClient.hmset(studentCacheObject.getStudentId(), studentObjectMap);
 
     }
 
-    public void removeSingleValueFromHashWithKey(String key, String removedType){
+    public void removeSingleValueFromHashWithKey(String key, String removedType) {
 
-        redisClient.hdel(key,removedType);
+        redisClient.hdel(key, removedType);
     }
 
-    public void removeObjectFromHashWithKey(String key){
+    public void removeObjectFromHashWithKey(String key) {
 
+        redisClient.hdel(key,"studentId","name","email","major","gpa");
     }
 
-    private Object getCacheField(String type, StudentCacheObject studentCacheObject){
-
-        switch(type){
-
-            case RedisDemoConstants
-                    .STUDENT_CACHE_OBJECT_NAME_FIELD:
-                return studentCacheObject.getName();
-            case RedisDemoConstants.STUDENT_CACHE_OBJECT_EMAIL_FIELD:
-                return studentCacheObject.getEmail();
-            case RedisDemoConstants.STUDENT_CACHE_OBJECT_MAJOR_FIELD:
-                return studentCacheObject.getMajor();
-            case RedisDemoConstants.STUDENT_CACHE_OBJECT_GPA_FIELD:
-                return studentCacheObject.getGpa();
-            case RedisDemoConstants.STUDENT_CACHE_OBJECT_HAS_SCHOLAR_FIELD:
-                return studentCacheObject.isHasScholar();
-            default:
-                return null;
-        }
-    }
 }

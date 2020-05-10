@@ -2,11 +2,11 @@ package com.justayar.springboot.domain;
 
 public class StudentCacheObject {
 
+    private String studentId;
     private String name;
     private String email;
     private String major;
-    private double gpa;
-    private boolean hasScholar;
+    private String gpa;
 
     public String getName() {
         return name;
@@ -32,19 +32,30 @@ public class StudentCacheObject {
         this.major = major;
     }
 
-    public double getGpa() {
+    public String getGpa() {
         return gpa;
     }
 
-    public void setGpa(double gpa) {
+    public void setGpa(String gpa) {
         this.gpa = gpa;
     }
 
-    public boolean isHasScholar() {
-        return hasScholar;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setHasScholar(boolean hasScholar) {
-        this.hasScholar = hasScholar;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentCacheObject{" +
+                "studentId='" + studentId + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", major='" + major + '\'' +
+                ", gpa='" + gpa + '\'' +
+                '}';
     }
 }
