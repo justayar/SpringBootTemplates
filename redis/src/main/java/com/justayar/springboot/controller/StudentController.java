@@ -2,6 +2,7 @@ package com.justayar.springboot.controller;
 
 import com.justayar.springboot.domain.StudentCacheObject;
 import com.justayar.springboot.util.RedisCacheManager;
+import com.justayar.springboot.util.RedisClusterCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author canemreayar
  */
@@ -19,8 +22,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/student")
 public class StudentController {
 
+
     @Autowired
     private RedisCacheManager redisCacheManager;
+
+    /*
+    @Autowired
+    private RedisClusterCacheManager redisCacheManager;
+
+    */
 
     @PostMapping("/addNewStudent")
     public String addNewStudent(StudentCacheObject studentCacheObject) {
@@ -46,6 +56,13 @@ public class StudentController {
     public String getStudentSingleField(@RequestParam String studentId,@RequestParam String fieldType) {
 
         return redisCacheManager.getSingleFieldFromHashWithKey(studentId,fieldType);
+
+    }
+
+    @GetMapping("/getAllStudents")
+    public List<StudentCacheObject> getAllStudents(){
+
+        return redisCacheManager.getAllObjects();
 
     }
 

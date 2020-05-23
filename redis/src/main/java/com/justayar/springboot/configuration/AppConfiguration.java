@@ -15,6 +15,38 @@ public class AppConfiguration {
 
     public static class Redis {
 
+        private Config standalone = new Config();
+        private Config sentinel = new Config();
+        private Config cluster = new Config();
+
+        public Config getStandalone() {
+            return standalone;
+        }
+
+        public void setStandalone(Config standalone) {
+            this.standalone = standalone;
+        }
+
+        public Config getSentinel() {
+            return sentinel;
+        }
+
+        public void setSentinel(Config sentinel) {
+            this.sentinel = sentinel;
+        }
+
+        public Config getCluster() {
+            return cluster;
+        }
+
+        public void setCluster(Config cluster) {
+            this.cluster = cluster;
+        }
+    }
+
+
+    public static class Config {
+
         private String host;
         private int port;
         private int timeout;
@@ -42,7 +74,7 @@ public class AppConfiguration {
         public void setTimeout(int timeout) {
             this.timeout = timeout;
         }
-    }
 
+    }
 
 }

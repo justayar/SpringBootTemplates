@@ -8,10 +8,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisSentinelPool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,35 +16,19 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
-public class RedisCacheManager implements InitializingBean {
+public class RedisClusterCacheManager implements InitializingBean {
 
     @Autowired
     RedisConfiguration redisConf;
 
-    private Jedis redisClient;
+    private JedisCluster redisClient;
 
     @Override
     public void afterPropertiesSet() {
 
+        //Cluster Jedis
 
-        //Standalone Jedis Pool
-
-
-        JedisPool jedisPool = redisConf.getJedisStandalone();
-
-        redisClient = jedisPool.getResource();
-
-
-
-
-        //Sentinel Jedis Pool
-
-
-
-        //JedisSentinelPool jedisSentinelPool = redisConf.getJedisSentinel();
-
-        //redisClient = jedisSentinelPool.getResource();
-
+        //redisClient = redisConf.getJedisCluster();
 
     }
 
