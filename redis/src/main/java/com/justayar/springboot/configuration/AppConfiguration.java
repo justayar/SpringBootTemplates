@@ -9,6 +9,16 @@ public class AppConfiguration {
         return redis;
     }
 
+    private String activeRedisMode;
+
+    public String getActiveRedisMode() {
+        return activeRedisMode;
+    }
+
+    public void setActiveRedisMode(String activeRedisMode) {
+        this.activeRedisMode = activeRedisMode;
+    }
+
     public void setRedis(Redis redis) {
         this.redis = redis;
     }

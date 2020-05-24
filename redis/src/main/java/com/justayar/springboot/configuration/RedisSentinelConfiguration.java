@@ -1,34 +1,24 @@
+
 package com.justayar.springboot.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import redis.clients.jedis.*;
-
+import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.JedisSentinelPool;
 import java.util.HashSet;
 import java.util.Set;
 
 @Configuration
-public class RedisConfiguration {
+public class RedisSentinelConfiguration {
+
+
+    /* TODO comment out below block if you run application sentinel mode.
+
 
     @Autowired
     public AppConfiguration appConf;
 
-
-    @Bean
-    public JedisPool getJedisStandalone(){
-
-        JedisPoolConfig jedisPoolConfig = getJedisPoolConfig();
-
-
-        return new JedisPool(jedisPoolConfig,
-                appConf.getRedis().getStandalone().getHost(),
-                appConf.getRedis().getStandalone().getPort(),
-                appConf.getRedis().getStandalone().getTimeout());
-
-    }
-
-    /*
 
     @Bean
     public JedisSentinelPool getJedisSentinel(){
@@ -58,42 +48,6 @@ public class RedisConfiguration {
 
 
 
-    @Bean
-    public JedisCluster getJedisCluster(){
-
-        String[] clusterNodes = appConf.getRedis().getCluster().getHost().split(";");
-
-
-        Set<HostAndPort> clusters = new HashSet<>();
-
-
-        for(String clusterNode : clusterNodes){
-
-            if(clusterNode!= null &&
-                    !clusterNode.isEmpty()){
-
-                String[] clusterNodeEndpoint = clusterNode.split(":");
-
-                if(clusterNodeEndpoint.length == 2)
-                    clusters.add(new HostAndPort(clusterNodeEndpoint[0],Integer.parseInt(clusterNodeEndpoint[1])));
-
-            }
-
-        }
-
-        JedisPoolConfig jedisPoolConfig = getJedisPoolConfig();
-
-
-        return new JedisCluster(clusters,
-                appConf.getRedis().getCluster().getTimeout(),
-                appConf.getRedis().getCluster().getTimeout(),jedisPoolConfig);
-
-
-    }
-
-
-    */
-
     private JedisPoolConfig getJedisPoolConfig(){
 
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
@@ -108,5 +62,8 @@ public class RedisConfiguration {
 
     }
 
+    */
+
 
 }
+

@@ -1,53 +1,37 @@
-package com.justayar.springboot.util;
+package com.justayar.springboot.util.cache;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.justayar.springboot.configuration.RedisConfiguration;
+import com.justayar.springboot.configuration.RedisClusterConfiguration;
 import com.justayar.springboot.domain.StudentCacheObject;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisSentinelPool;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@Component
-public class RedisCacheManager implements InitializingBean {
+public class RedisClusterCacheManager extends RedisCacheManager implements InitializingBean {
 
     @Autowired
-    RedisConfiguration redisConf;
+    RedisClusterConfiguration redisConf;
 
-    private Jedis redisClient;
+    private JedisCluster redisClient;
 
     @Override
     public void afterPropertiesSet() {
 
 
-        //Standalone Jedis Pool
+        /* TODO comment out below block if you run application cluster mode.
 
 
-        JedisPool jedisPool = redisConf.getJedisStandalone();
-
-        redisClient = jedisPool.getResource();
+        redisClient = redisConf.getJedisCluster();
 
 
-
-
-        //Sentinel Jedis Pool
-
-
-
-        //JedisSentinelPool jedisSentinelPool = redisConf.getJedisSentinel();
-
-        //redisClient = jedisSentinelPool.getResource();
-
+        */
 
     }
 
@@ -131,5 +115,6 @@ public class RedisCacheManager implements InitializingBean {
 
         return null;
     }
+
 
 }
