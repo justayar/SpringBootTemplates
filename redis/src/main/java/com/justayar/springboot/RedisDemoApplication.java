@@ -19,7 +19,6 @@ public class RedisDemoApplication {
 	public AppConfiguration appConfiguration() { return new AppConfiguration(); }
 
 	@Bean
-	@Primary
 	public RedisCacheManager redisStandaloneCacheManager(){
 		return new RedisStandaloneCacheManager();
 	}

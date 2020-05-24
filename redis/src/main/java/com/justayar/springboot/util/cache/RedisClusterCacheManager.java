@@ -28,6 +28,7 @@ public class RedisClusterCacheManager extends RedisCacheManager implements Initi
         /* TODO comment out below block if you run application cluster mode.
 
 
+
         redisClient = redisConf.getJedisCluster();
 
 
