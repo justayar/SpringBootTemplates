@@ -13,7 +13,7 @@ import redis.clients.jedis.JedisCluster;
 
 import java.util.*;
 
-public class RedisClusterCacheManager implements InitializingBean,RedisCacheManager {
+public class RedisClusterCacheManager implements InitializingBean, RedisCacheManager {
 
     @Autowired
     RedisClusterConfiguration redisConf;
@@ -26,17 +26,10 @@ public class RedisClusterCacheManager implements InitializingBean,RedisCacheMana
     @Override
     public void afterPropertiesSet() {
 
-
         if (appConf.getActiveRedisMode().equalsIgnoreCase(RedisDemoConstants.REDIS_CLUSTER_MODE)) {
 
-
             redisClient = redisConf.getJedisCluster();
-
         }
-
-
-
-
     }
 
     public StudentCacheObject getObjectFromHashWithKey(String key) {

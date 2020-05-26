@@ -28,16 +28,13 @@ public class RedisSentinelCacheManager implements InitializingBean,RedisCacheMan
     @Override
     public void afterPropertiesSet() {
 
-
         if(appConf.getActiveRedisMode().equalsIgnoreCase(RedisDemoConstants.REDIS_SENTINEL_MODE)) {
-
 
             JedisSentinelPool jedisSentinelPool = redisConf.getJedisSentinel();
 
             redisClient = jedisSentinelPool.getResource();
 
         }
-
     }
 
 
