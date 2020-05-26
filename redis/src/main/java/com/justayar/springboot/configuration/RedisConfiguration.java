@@ -12,7 +12,6 @@ public abstract class RedisConfiguration {
         jedisPoolConfig.setMaxIdle(15);  //The maximum number of idle connections that can be held in the pool,default is 8.
         jedisPoolConfig.setMinIdle(1);  //The target for the minimum number of idle connections to maintain in the pool,default is 0
         jedisPoolConfig.setMaxTotal(20);  // The maximum number of connections that can be allocated by the pool, default is 8.
-        jedisPoolConfig.setMaxWaitMillis(20);
 
         return jedisPoolConfig;
 
