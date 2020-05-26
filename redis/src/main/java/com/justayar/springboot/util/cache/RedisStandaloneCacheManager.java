@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-public class RedisStandaloneCacheManager extends RedisCacheManager implements InitializingBean {
+import java.util.*;
+
+public class RedisStandaloneCacheManager implements InitializingBean,RedisCacheManager {
 
     @Autowired
     RedisStandaloneConfiguration redisConf;
@@ -108,7 +106,7 @@ public class RedisStandaloneCacheManager extends RedisCacheManager implements In
             return studentCacheObjectList;
         }
 
-        return null;
+        return Collections.emptyList();
     }
 
 }

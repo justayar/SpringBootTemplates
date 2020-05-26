@@ -4,20 +4,20 @@ import com.justayar.springboot.domain.StudentCacheObject;
 
 import java.util.List;
 
-public abstract class RedisCacheManager {
+public interface RedisCacheManager {
 
-    public abstract StudentCacheObject getObjectFromHashWithKey(String key);
+     StudentCacheObject getObjectFromHashWithKey(String key);
 
-    public abstract String getSingleFieldFromHashWithKey(String key, String valueType);
+     String getSingleFieldFromHashWithKey(String key, String valueType);
 
-    public abstract void updateObjectInHashWithKey(String key, StudentCacheObject studentCacheObject);
+     void updateObjectInHashWithKey(String key, StudentCacheObject studentCacheObject);
 
-    public abstract void setNewObjectToHashWithKey(StudentCacheObject studentCacheObject);
+     void setNewObjectToHashWithKey(StudentCacheObject studentCacheObject);
 
-    public abstract void removeSingleValueFromHashWithKey(String key, String removedType);
+     void removeSingleValueFromHashWithKey(String key, String removedType);
 
-    public abstract void removeObjectFromHashWithKey(String key);
+     void removeObjectFromHashWithKey(String key);
 
-    public abstract List<StudentCacheObject> getAllObjects();
+     List<StudentCacheObject> getAllObjects();
 
 }

@@ -15,7 +15,7 @@ import java.util.Set;
 public class RedisClusterConfiguration extends RedisConfiguration {
 
     @Autowired
-    public AppConfiguration appConf;
+    private AppConfiguration appConf;
 
 
     @Bean

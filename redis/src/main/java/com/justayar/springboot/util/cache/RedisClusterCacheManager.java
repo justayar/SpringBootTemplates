@@ -11,12 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import redis.clients.jedis.JedisCluster;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public class RedisClusterCacheManager extends RedisCacheManager implements InitializingBean {
+public class RedisClusterCacheManager implements InitializingBean,RedisCacheManager {
 
     @Autowired
     RedisClusterConfiguration redisConf;
@@ -120,7 +117,7 @@ public class RedisClusterCacheManager extends RedisCacheManager implements Initi
             return studentCacheObjectList;
         }
 
-        return null;
+        return Collections.EMPTY_LIST;
     }
 
 
