@@ -1,5 +1,5 @@
 # Redis Demo Application
-This application is a simple example of Redis Distributed Map. You can use it as a template for your needs.
+This application is a simple example of three Redis deployment modes( Standalone, Sentinel, Cluster) with Redis hash object. You can use it as a template for your needs.
 
 ## Requirements
 For building and running the application you need:
