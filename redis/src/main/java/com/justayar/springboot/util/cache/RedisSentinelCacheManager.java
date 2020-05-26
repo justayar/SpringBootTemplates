@@ -2,7 +2,9 @@ package com.justayar.springboot.util.cache;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.justayar.springboot.configuration.AppConfiguration;
 import com.justayar.springboot.configuration.RedisSentinelConfiguration;
+import com.justayar.springboot.constants.RedisDemoConstants;
 import com.justayar.springboot.domain.StudentCacheObject;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,19 +23,22 @@ public class RedisSentinelCacheManager extends RedisCacheManager implements Init
 
     private Jedis redisClient;
 
+    @Autowired
+    private AppConfiguration appConf;
 
 
     @Override
     public void afterPropertiesSet() {
 
-        /* TODO comment out below block if you run application sentinel mode.
+
+        if(appConf.getActiveRedisMode().equalsIgnoreCase(RedisDemoConstants.REDIS_SENTINEL_MODE)) {
 
 
-        JedisSentinelPool jedisSentinelPool = redisConf.getJedisSentinel();
+            JedisSentinelPool jedisSentinelPool = redisConf.getJedisSentinel();
 
-        redisClient = jedisSentinelPool.getResource();
+            redisClient = jedisSentinelPool.getResource();
 
-        */
+        }
 
     }
 

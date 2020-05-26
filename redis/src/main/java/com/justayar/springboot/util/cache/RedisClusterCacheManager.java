@@ -2,7 +2,9 @@ package com.justayar.springboot.util.cache;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.justayar.springboot.configuration.AppConfiguration;
 import com.justayar.springboot.configuration.RedisClusterConfiguration;
+import com.justayar.springboot.constants.RedisDemoConstants;
 import com.justayar.springboot.domain.StudentCacheObject;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +21,24 @@ public class RedisClusterCacheManager extends RedisCacheManager implements Initi
     @Autowired
     RedisClusterConfiguration redisConf;
 
+    @Autowired
+    private AppConfiguration appConf;
+
     private JedisCluster redisClient;
 
     @Override
     public void afterPropertiesSet() {
 
 
-        /* TODO comment out below block if you run application cluster mode.
+        if (appConf.getActiveRedisMode().equalsIgnoreCase(RedisDemoConstants.REDIS_CLUSTER_MODE)) {
+
+
+            redisClient = redisConf.getJedisCluster();
+
+        }
 
 
 
-        redisClient = redisConf.getJedisCluster();
-
-
-        */
 
     }
 

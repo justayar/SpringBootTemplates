@@ -1,5 +1,6 @@
 package com.justayar.springboot.configuration;
 
+import com.justayar.springboot.constants.RedisDemoConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,44 +18,43 @@ public class RedisClusterConfiguration extends RedisConfiguration {
     public AppConfiguration appConf;
 
 
-   /* TODO comment out below block if you run application cluster mode.
-
-
-
     @Bean
-    public JedisCluster getJedisCluster(){
+    public JedisCluster getJedisCluster() {
 
-        String[] clusterNodes = appConf.getRedis().getCluster().getHost().split(";");
+        if (appConf.getActiveRedisMode().equalsIgnoreCase(RedisDemoConstants.REDIS_CLUSTER_MODE)) {
+
+            String[] clusterNodes = appConf.getRedis().getCluster().getHost().split(";");
 
 
-        Set<HostAndPort> clusters = new HashSet<>();
+            Set<HostAndPort> clusters = new HashSet<>();
 
 
-        for(String clusterNode : clusterNodes){
+            for (String clusterNode : clusterNodes) {
 
-            if(clusterNode!= null &&
-                    !clusterNode.isEmpty()){
+                if (clusterNode != null &&
+                        !clusterNode.isEmpty()) {
 
-                String[] clusterNodeEndpoint = clusterNode.split(":");
+                    String[] clusterNodeEndpoint = clusterNode.split(":");
 
-                if(clusterNodeEndpoint.length == 2)
-                    clusters.add(new HostAndPort(clusterNodeEndpoint[0],Integer.parseInt(clusterNodeEndpoint[1])));
+                    if (clusterNodeEndpoint.length == 2)
+                        clusters.add(new HostAndPort(clusterNodeEndpoint[0], Integer.parseInt(clusterNodeEndpoint[1])));
+
+                }
 
             }
 
+            JedisPoolConfig jedisPoolConfig = getJedisPoolConfig();
+
+
+            return new JedisCluster(clusters,
+                    appConf.getRedis().getCluster().getTimeout(),
+                    appConf.getRedis().getCluster().getTimeout(), jedisPoolConfig);
         }
 
-        JedisPoolConfig jedisPoolConfig = getJedisPoolConfig();
-
-
-        return new JedisCluster(clusters,
-                appConf.getRedis().getCluster().getTimeout(),
-                appConf.getRedis().getCluster().getTimeout(),jedisPoolConfig);
-
+        return null;
 
     }
 
-    */
 
 
 }

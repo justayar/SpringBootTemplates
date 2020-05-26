@@ -1,6 +1,7 @@
 
 package com.justayar.springboot.configuration;
 
+import com.justayar.springboot.constants.RedisDemoConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +14,6 @@ import java.util.Set;
 public class RedisSentinelConfiguration extends RedisConfiguration {
 
 
-    /* TODO comment out below block if you run application sentinel mode.
-
-
-
 
     @Autowired
     public AppConfiguration appConf;
@@ -25,30 +22,35 @@ public class RedisSentinelConfiguration extends RedisConfiguration {
     @Bean
     public JedisSentinelPool getJedisSentinel(){
 
-        String[] sentinelNodes = appConf.getRedis().getSentinel().getHost().split(";");
+        if(appConf.getActiveRedisMode().equalsIgnoreCase(RedisDemoConstants.REDIS_SENTINEL_MODE)) {
 
-        Set sentinels = new HashSet<>();
+            String[] sentinelNodes = appConf.getRedis().getSentinel().getHost().split(";");
+
+            Set sentinels = new HashSet<>();
 
 
-        for(String sentinelNode : sentinelNodes){
+            for (String sentinelNode : sentinelNodes) {
 
-            if(sentinelNode!= null &&
-                    !sentinelNode.isEmpty()){
-                sentinels.add(sentinelNode);
+                if (sentinelNode != null &&
+                        !sentinelNode.isEmpty()) {
+                    sentinels.add(sentinelNode);
+
+                }
 
             }
 
+
+            JedisPoolConfig jedisPoolConfig = getJedisPoolConfig();
+
+
+            return new JedisSentinelPool("mymaster", sentinels, jedisPoolConfig, appConf.getRedis().getSentinel().getTimeout());
+
         }
 
-
-        JedisPoolConfig jedisPoolConfig = getJedisPoolConfig();
-
-
-        return new JedisSentinelPool("mymaster",sentinels,jedisPoolConfig,appConf.getRedis().getSentinel().getTimeout());
-
+        return null;
     }
 
-    */
+
 
 }
 
