@@ -1,6 +1,7 @@
 package com.justayar.springboot;
 
 import com.justayar.springboot.util.CleanUp.CleanUpFeatureExample;
+import com.justayar.springboot.util.GetterSetterExample.StudentObject;
 import com.justayar.springboot.util.NonNull.NonNullFeatureExample;
 import com.justayar.springboot.util.ValVar.ValVarFeatureExample;
 import org.springframework.boot.SpringApplication;
@@ -38,6 +39,29 @@ public class LombokApplication {
 
         new CleanUpFeatureExample().setSecretNumberToBackUpFile(secretNumberFromFile);
 
+
+		out.println("\n---( Lombok Getter - Setter Example )---\n");
+
+
+		StudentObject studentObject = new StudentObject();
+
+		studentObject.setSchoolNumber(123); // It can be editable, there is no any access level restriction
+		//studentObject.getSchoolNumber();  Getter method restricted with AccessLevel.NONE
+
+		studentObject.setMajor("Computer Engineering"); // It can be editable, there is no any access level restriction
+		studentObject.getMajor(); // There is no restriction.
+
+		studentObject.setPersonName("John Doe"); // It can be editable, there is no any access level restriction
+		//studentObject.getPersonName();  Getter method restricted with AccessLevel.PRIVATE
+
+
+		// studentObject.setStudentSecretCode(); it is not permitted outside of class with AccessLevel.PRIVATE
+		// studentObject.getStudentSecretCode(); it is not permitted with AccessLevel.NONE
+
+		//studentObject.setAdvisor() it is not permitted outside of class with AccessLevel.NONE
+		studentObject.getAdvisor(); // There is no restriction.
+
+		out.println("New Student: "+studentObject.toString());
 
 	}
 
