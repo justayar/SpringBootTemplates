@@ -1,4 +1,4 @@
-package com.justayar.springboot.util;
+package com.justayar.springboot.util.ValVar;
 
 import lombok.val;
 import lombok.var;
