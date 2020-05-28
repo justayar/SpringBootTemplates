@@ -3,6 +3,10 @@ package com.justayar.springboot;
 import com.justayar.springboot.util.CleanUp.CleanUpFeatureExample;
 import com.justayar.springboot.util.GetterSetterExample.StudentObject;
 import com.justayar.springboot.util.NonNull.NonNullFeatureExample;
+import com.justayar.springboot.util.ToString.Product;
+import com.justayar.springboot.util.ToString.ProductCategory;
+import com.justayar.springboot.util.ToString.ProductSubCategory;
+import com.justayar.springboot.util.ToString.ShoppingCart;
 import com.justayar.springboot.util.ValVar.ValVarFeatureExample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,6 +33,7 @@ public class LombokApplication {
 			out.println("Text which will be checked whether it is palindrome or not cannot be null");
 			out.println("Error message:"+ex.getMessage());
 		}
+
 
         out.println("\n---( Lombok CleanUp Example )---\n");
 
@@ -62,6 +67,51 @@ public class LombokApplication {
 		studentObject.getAdvisor(); // There is no restriction.
 
 		out.println("New Student: "+studentObject.toString());
+
+		out.println("\n---( Lombok ToString Example )---\n");
+
+		ShoppingCart shoppingCart = new ShoppingCart();
+
+		shoppingCart.setCartId(12345);
+
+
+		Product book = new Product();
+		book.setProductId(123);
+		book.setProductName("Clean Code Book");
+		book.setProductAmount(1);
+		book.setProductUnitPrice(100.0);
+
+
+		ProductSubCategory productSubCategory = new ProductSubCategory();
+		productSubCategory.setSubCategoryId(12);
+		productSubCategory.setSubCategoryName("e-books");
+		productSubCategory.setCategoryId(1);
+		productSubCategory.setCategoryName("book");
+
+		book.setProductCategory(productSubCategory);
+
+		shoppingCart.addProductToCart(book);
+
+
+		Product shoe = new Product();
+		shoe.setProductId(221);
+		shoe.setProductName("Nike Air Max");
+		shoe.setProductAmount(1);
+		shoe.setProductUnitPrice(450.0);
+
+
+		productSubCategory = new ProductSubCategory();
+		productSubCategory.setSubCategoryId(23);
+		productSubCategory.setSubCategoryName("sport");
+		productSubCategory.setCategoryId(2);
+		productSubCategory.setCategoryName("shoe");
+
+		shoe.setProductCategory(productSubCategory);
+
+		shoppingCart.addProductToCart(shoe);
+
+
+		out.println(shoppingCart.toString());
 
 	}
 
