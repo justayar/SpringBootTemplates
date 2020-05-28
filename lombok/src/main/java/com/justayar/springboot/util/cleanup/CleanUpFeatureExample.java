@@ -1,4 +1,4 @@
-package com.justayar.springboot.util.CleanUp;
+package com.justayar.springboot.util.cleanup;
 
 import lombok.Cleanup;
 import lombok.NonNull;

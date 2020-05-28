@@ -1,4 +1,4 @@
-package com.justayar.springboot.util.GetterSetterExample;
+package com.justayar.springboot.util.gettersetter;
 
 import lombok.AccessLevel;
 import lombok.Getter;

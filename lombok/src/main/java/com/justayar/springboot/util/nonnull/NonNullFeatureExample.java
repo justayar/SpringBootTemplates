@@ -1,4 +1,4 @@
-package com.justayar.springboot.util.NonNull;
+package com.justayar.springboot.util.nonnull;
 
 import lombok.NonNull;
 

@@ -1,13 +1,12 @@
 package com.justayar.springboot;
 
-import com.justayar.springboot.util.CleanUp.CleanUpFeatureExample;
-import com.justayar.springboot.util.GetterSetterExample.StudentObject;
-import com.justayar.springboot.util.NonNull.NonNullFeatureExample;
-import com.justayar.springboot.util.ToString.Product;
-import com.justayar.springboot.util.ToString.ProductCategory;
-import com.justayar.springboot.util.ToString.ProductSubCategory;
-import com.justayar.springboot.util.ToString.ShoppingCart;
-import com.justayar.springboot.util.ValVar.ValVarFeatureExample;
+import com.justayar.springboot.util.cleanup.CleanUpFeatureExample;
+import com.justayar.springboot.util.gettersetter.StudentObject;
+import com.justayar.springboot.util.nonnull.NonNullFeatureExample;
+import com.justayar.springboot.util.tostring.Product;
+import com.justayar.springboot.util.tostring.ProductSubCategory;
+import com.justayar.springboot.util.tostring.ShoppingCart;
+import com.justayar.springboot.util.valvar.ValVarFeatureExample;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import static java.lang.System.out;
@@ -23,7 +22,7 @@ public class LombokApplication {
 
 		new ValVarFeatureExample().returnToDoListWithPrioritizedOrder();
 
-		out.println("\n---( Lombok NonNull Example )---\n");
+		out.println("\n---( Lombok nonnull Example )---\n");
 
 
 		try{
@@ -35,7 +34,7 @@ public class LombokApplication {
 		}
 
 
-        out.println("\n---( Lombok CleanUp Example )---\n");
+        out.println("\n---( Lombok cleanup Example )---\n");
 
 
         String secretNumberFromFile = new CleanUpFeatureExample().getSecretNumberFromFile();
@@ -68,7 +67,7 @@ public class LombokApplication {
 
 		out.println("New Student: "+studentObject.toString());
 
-		out.println("\n---( Lombok ToString Example )---\n");
+		out.println("\n---( Lombok tostring Example )---\n");
 
 		ShoppingCart shoppingCart = new ShoppingCart();
 

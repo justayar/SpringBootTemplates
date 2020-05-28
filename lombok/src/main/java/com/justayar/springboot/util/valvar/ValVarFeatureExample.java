@@ -1,4 +1,4 @@
-package com.justayar.springboot.util.ValVar;
+package com.justayar.springboot.util.valvar;
 
 import lombok.val;
 import lombok.var;
@@ -13,11 +13,10 @@ import static java.lang.System.out;
 public class ValVarFeatureExample {
 
 
-    private HashMap<Integer,String> todoListWithPriorities;
 
     public void returnToDoListWithPrioritizedOrder(){
 
-        todoListWithPriorities = new HashMap<>();
+        HashMap<Integer,String> todoListWithPriorities =  new HashMap<>();
         todoListWithPriorities.put(3,"clean the house");
         todoListWithPriorities.put(1,"feed the cats");
         todoListWithPriorities.put(4,"water the garden");

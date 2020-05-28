@@ -1,4 +1,4 @@
-package com.justayar.springboot.util.ToString;
+package com.justayar.springboot.util.tostring;
 
 import lombok.Getter;
 import lombok.Setter;
