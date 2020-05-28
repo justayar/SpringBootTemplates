@@ -1,5 +1,6 @@
 package com.justayar.springboot;
 
+import com.justayar.springboot.util.CleanUp.CleanUpFeatureExample;
 import com.justayar.springboot.util.NonNull.NonNullFeatureExample;
 import com.justayar.springboot.util.ValVar.ValVarFeatureExample;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +28,15 @@ public class LombokApplication {
 			out.println("Text which will be checked whether it is palindrome or not cannot be null");
 			out.println("Error message:"+ex.getMessage());
 		}
+
+        out.println("\n---( Lombok CleanUp Example )---\n");
+
+
+        String secretNumberFromFile = new CleanUpFeatureExample().getSecretNumberFromFile();
+
+        out.println("Secret number from file is: "+secretNumberFromFile );
+
+        new CleanUpFeatureExample().setSecretNumberToBackUpFile(secretNumberFromFile);
 
 
 	}
