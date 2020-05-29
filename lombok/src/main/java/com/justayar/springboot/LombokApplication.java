@@ -11,6 +11,7 @@ import com.justayar.springboot.util.nonnull.NonNullFeatureExample;
 import com.justayar.springboot.util.tostring.Product;
 import com.justayar.springboot.util.tostring.ProductSubCategory;
 import com.justayar.springboot.util.tostring.ShoppingCart;
+import com.justayar.springboot.util.value.Lecture;
 import com.justayar.springboot.util.valvar.ValVarFeatureExample;
 import lombok.val;
 import lombok.var;
@@ -65,7 +66,16 @@ public class LombokApplication {
         out.println("\n---( Lombok Data Example )---\n");
 
         runDataExample();
-        
+
+        out.println("\n---( Lombok Value Example )---\n");
+
+        runValueExample();
+    }
+
+    private static void runValueExample() {
+        Lecture lecture = Lecture.of(123,"Math","Robert Martin","Science",2);
+
+        out.println("Lecture details are: "+lecture.toString());
     }
 
     private static void runDataExample() {
