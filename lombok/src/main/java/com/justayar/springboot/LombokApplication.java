@@ -1,6 +1,7 @@
 package com.justayar.springboot;
 
 import com.justayar.springboot.util.cleanup.CleanUpFeatureExample;
+import com.justayar.springboot.util.constructor.Dress;
 import com.justayar.springboot.util.equalsandhashcode.Car;
 import com.justayar.springboot.util.equalsandhashcode.ClassicCar;
 import com.justayar.springboot.util.gettersetter.StudentObject;
@@ -52,7 +53,24 @@ public class LombokApplication {
 
         runEqualsAndHashCodeExample();
 
+        out.println("\n---( Lombok NoArgs,RequiredArgs,AllArgs Constructor Example )---\n");
 
+        runNoArgsRequiredArgsAllArgsConstructorExample();
+
+    }
+
+    private static void runNoArgsRequiredArgsAllArgsConstructorExample() {
+        Dress dressWithNoArgs = new Dress();
+
+        Dress dressWithRequiredArgs = Dress.of(Dress.FabricType.Cotton,"Prada");
+
+        Dress dressWithAllArgs = new Dress(Dress.FabricType.Canvas,"RED","Turkey",150,"Koton", Dress.Size.Large);
+
+        out.println("Dress With No Args:"+dressWithNoArgs.toString());
+
+        out.println("Dress With Required Args:"+dressWithRequiredArgs.toString());
+
+        out.println("Dress With All Args:"+dressWithAllArgs.toString());
     }
 
     private static void runEqualsAndHashCodeExample() {
