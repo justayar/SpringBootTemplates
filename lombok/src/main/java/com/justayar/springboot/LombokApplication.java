@@ -2,6 +2,8 @@ package com.justayar.springboot;
 
 import com.justayar.springboot.util.cleanup.CleanUpFeatureExample;
 import com.justayar.springboot.util.constructor.Dress;
+import com.justayar.springboot.util.data.Ingredient;
+import com.justayar.springboot.util.data.Meal;
 import com.justayar.springboot.util.equalsandhashcode.Car;
 import com.justayar.springboot.util.equalsandhashcode.ClassicCar;
 import com.justayar.springboot.util.gettersetter.StudentObject;
@@ -10,9 +12,12 @@ import com.justayar.springboot.util.tostring.Product;
 import com.justayar.springboot.util.tostring.ProductSubCategory;
 import com.justayar.springboot.util.tostring.ShoppingCart;
 import com.justayar.springboot.util.valvar.ValVarFeatureExample;
+import lombok.val;
+import lombok.var;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static java.lang.System.out;
@@ -57,6 +62,24 @@ public class LombokApplication {
 
         runNoArgsRequiredArgsAllArgsConstructorExample();
 
+        out.println("\n---( Lombok Data Example )---\n");
+
+        runDataExample();
+        
+    }
+
+    private static void runDataExample() {
+        var ingredientList = new ArrayList<Ingredient>();
+
+        ingredientList.add(new Ingredient("onion",1));
+        ingredientList.add(new Ingredient("tomato",0.5));
+        ingredientList.add(new Ingredient("egg",5));
+
+
+        Meal menemen = Meal.of("menemen","Turkey",ingredientList);
+
+        out.println("Meal is "+menemen.getMealName());
+        out.println("Meal ingredients are "+ingredientList.toString());
     }
 
     private static void runNoArgsRequiredArgsAllArgsConstructorExample() {
