@@ -1,7 +1,6 @@
 package com.justayar.springboot.util.value;
 
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 

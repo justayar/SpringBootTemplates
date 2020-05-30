@@ -1,5 +1,6 @@
 package com.justayar.springboot;
 
+import com.justayar.springboot.util.builder.*;
 import com.justayar.springboot.util.cleanup.CleanUpFeatureExample;
 import com.justayar.springboot.util.constructor.Dress;
 import com.justayar.springboot.util.data.Ingredient;
@@ -13,14 +14,10 @@ import com.justayar.springboot.util.tostring.ProductSubCategory;
 import com.justayar.springboot.util.tostring.ShoppingCart;
 import com.justayar.springboot.util.value.Lecture;
 import com.justayar.springboot.util.valvar.ValVarFeatureExample;
-import lombok.val;
 import lombok.var;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import static java.lang.System.out;
 
 @SpringBootApplication
@@ -70,6 +67,70 @@ public class LombokApplication {
         out.println("\n---( Lombok Value Example )---\n");
 
         runValueExample();
+
+        out.println("\n---( Lombok Builder Example )---\n");
+
+        runBuilderExample();
+
+
+    }
+
+    private static void runBuilderExample() {
+        Menu menu = Menu.builder().build();
+
+        Drink drink = Drink.drinkBuilder().drinkSize(Drink.DrinkSize.LARGE).drinkType(Drink.DrinkType.COKE).execute();
+        Fries fries = Fries.builder().friesSize(Fries.FriesSize.BIGGER).friesType(Fries.FriesType.SWEETPOTATO).build();
+
+        Bread bread = Bread.builder().breadType(Bread.BreadType.White).isIncludeSesame(false).build();
+        Meat meat = Meat.builder()
+                .meatType(Meat.MeatType.RedMeat)
+                .cookingRate(Meat.CookingRate.Medium)
+                .weight(200)
+                .sauces(Sauce.builder().sauceType(Sauce.SauceType.Barbecue).amount(1).build())
+                .sauces(Sauce.builder().sauceType(Sauce.SauceType.Barbecue).amount(1).build()).build();
+        Vegetable lettuce = Vegetable.builder()
+                                 .name("lettuce")
+                                 .amount(1).build();
+
+        Vegetable onion = Vegetable.builder()
+                .name("onion")
+                .amount(1).build();
+
+        Sauce ketchup = Sauce.builder()
+                                .amount(1)
+                                .sauceType(Sauce.SauceType.Ketchup)
+                                .build();
+
+        Sauce mayonnaise = Sauce.builder()
+                .amount(1)
+                .sauceType(Sauce.SauceType.Mayonnaise)
+                .build();
+
+        Hamburger hamburger = Hamburger.builder().build();
+
+        hamburger = hamburger.toBuilder()
+                .bread(bread)
+                .meat(meat)
+                .vegetables(lettuce)
+                .vegetables(onion)
+                .sauces(ketchup)
+                .sauces(mayonnaise).build();
+
+
+        menu = menu.toBuilder()
+                .drink(drink)
+                .fries(fries)
+                .hamburger(hamburger)
+                .sauces(mayonnaise).build();
+
+
+        Order order = Order.builder()
+                            .orderId(1)
+                            .menu(menu)
+                            .build();
+
+
+        out.println("Order is: "+order.toString());
     }
 
     private static void runValueExample() {
