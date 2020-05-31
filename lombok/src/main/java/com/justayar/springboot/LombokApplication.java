@@ -8,6 +8,7 @@ import com.justayar.springboot.util.data.Meal;
 import com.justayar.springboot.util.equalsandhashcode.Car;
 import com.justayar.springboot.util.equalsandhashcode.ClassicCar;
 import com.justayar.springboot.util.gettersetter.StudentObject;
+import com.justayar.springboot.util.lazygetter.PrimeNumber;
 import com.justayar.springboot.util.nonnull.NonNullFeatureExample;
 import com.justayar.springboot.util.sneakythrows.Reader;
 import com.justayar.springboot.util.synchronize.Raffle;
@@ -20,6 +21,9 @@ import lombok.var;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import static java.lang.System.out;
 
 @SpringBootApplication
@@ -80,10 +84,40 @@ public class LombokApplication {
 
         out.println("\n---( Lombok Synchronized Example )---\n");
 
-
         runSynchronizedExample();
 
+        out.println("\n---( Lombok Lazy Getter Example )---\n");
 
+        runLazyGetterExample();
+
+    }
+
+    private static void runLazyGetterExample() {
+        PrimeNumber prime = new PrimeNumber();
+
+        long startTime = System.currentTimeMillis();
+
+        List<Integer> primeNumbers = prime.getPrimeNumbers();
+
+        long endTime = System.currentTimeMillis();
+
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(endTime -startTime);
+
+
+        out.println("There are "+primeNumbers.size()+" numbers in "+seconds+" seconds.");
+
+        startTime = System.currentTimeMillis();
+
+        primeNumbers = prime.getPrimeNumbers();
+
+        endTime = System.currentTimeMillis();
+
+
+        /* prime numbers from cache */
+
+        seconds = TimeUnit.MILLISECONDS.toSeconds(endTime -startTime);
+
+        out.println("There are "+primeNumbers.size()+" numbers in "+seconds+" seconds.");
     }
 
     private static void runSynchronizedExample() {
