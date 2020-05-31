@@ -10,6 +10,7 @@ import com.justayar.springboot.util.equalsandhashcode.ClassicCar;
 import com.justayar.springboot.util.gettersetter.StudentObject;
 import com.justayar.springboot.util.nonnull.NonNullFeatureExample;
 import com.justayar.springboot.util.sneakythrows.Reader;
+import com.justayar.springboot.util.synchronize.Raffle;
 import com.justayar.springboot.util.tostring.Product;
 import com.justayar.springboot.util.tostring.ProductSubCategory;
 import com.justayar.springboot.util.tostring.ShoppingCart;
@@ -77,7 +78,19 @@ public class LombokApplication {
 
         runSneakyThrowsExample();
 
+        out.println("\n---( Lombok Synchronized Example )---\n");
 
+
+        runSynchronizedExample();
+
+
+    }
+
+    private static void runSynchronizedExample() {
+        Raffle raffle = new Raffle();
+        for(int i=0;i<11;i++){
+            out.println("Chance "+(i+1)+" result is "+raffle.didIWin());
+        }
     }
 
     private static void runSneakyThrowsExample() {
