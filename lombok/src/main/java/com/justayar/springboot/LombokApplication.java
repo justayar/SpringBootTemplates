@@ -9,6 +9,7 @@ import com.justayar.springboot.util.equalsandhashcode.Car;
 import com.justayar.springboot.util.equalsandhashcode.ClassicCar;
 import com.justayar.springboot.util.gettersetter.StudentObject;
 import com.justayar.springboot.util.nonnull.NonNullFeatureExample;
+import com.justayar.springboot.util.sneakythrows.Reader;
 import com.justayar.springboot.util.tostring.Product;
 import com.justayar.springboot.util.tostring.ProductSubCategory;
 import com.justayar.springboot.util.tostring.ShoppingCart;
@@ -72,7 +73,19 @@ public class LombokApplication {
 
         runBuilderExample();
 
+        out.println("\n---( Lombok SneakyThrows Example )---\n");
 
+        runSneakyThrowsExample();
+
+
+    }
+
+    private static void runSneakyThrowsExample() {
+        Reader reader = new Reader();
+
+        String result = reader.getSecretNumberFromFile();
+
+        out.println("Result from sneaky throws without any IOException Result is:"+result);
     }
 
     private static void runBuilderExample() {

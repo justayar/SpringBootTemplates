@@ -14,7 +14,6 @@ public class Car {
     private int year;
     @EqualsAndHashCode.Include
     private double horsePower;
-    @EqualsAndHashCode.Exclude
     private FuelType fuelType;
     @EqualsAndHashCode.Include
     private String model;

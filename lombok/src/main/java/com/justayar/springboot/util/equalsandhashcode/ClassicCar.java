@@ -9,7 +9,6 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper= true,onlyExplicitlyIncluded = true)
 public class ClassicCar extends Car {
 
-     @EqualsAndHashCode.Exclude
      private boolean hasBenchSeat;
      @EqualsAndHashCode.Include
      private int generationNumber;
