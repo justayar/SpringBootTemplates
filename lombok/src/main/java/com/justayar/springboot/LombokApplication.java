@@ -9,6 +9,8 @@ import com.justayar.springboot.util.equalsandhashcode.Car;
 import com.justayar.springboot.util.equalsandhashcode.ClassicCar;
 import com.justayar.springboot.util.gettersetter.StudentObject;
 import com.justayar.springboot.util.lazygetter.PrimeNumber;
+import com.justayar.springboot.util.log.MathUtils;
+import com.justayar.springboot.util.log.TextUtils;
 import com.justayar.springboot.util.nonnull.NonNullFeatureExample;
 import com.justayar.springboot.util.sneakythrows.Reader;
 import com.justayar.springboot.util.synchronize.Raffle;
@@ -90,6 +92,28 @@ public class LombokApplication {
 
         runLazyGetterExample();
 
+        out.println("\n---( Lombok Log Example )---\n");
+
+        runLogExample();
+
+    }
+
+    private static void runLogExample() {
+        TextUtils textUtils = new TextUtils();
+
+        String text = "spring";
+
+        out.println("Text: "+text+" Reversed Text: "+textUtils.reverseOfText(text));
+
+        MathUtils mathUtils = new MathUtils();
+
+        double priceToCeil = 1.23;
+
+        out.println("Price: "+priceToCeil+" Ceiled Price: "+mathUtils.getCeilOfPrice(priceToCeil));
+
+        double priceToFloor = 1.23;
+
+        out.println("Price: "+priceToFloor+" Floored Price: "+mathUtils.getFloorOfPrice(priceToFloor));
     }
 
     private static void runLazyGetterExample() {
