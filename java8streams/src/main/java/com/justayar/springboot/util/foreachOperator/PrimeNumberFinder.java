@@ -1,4 +1,4 @@
-package com.justayar.springboot.util.foreachoperator;
+package com.justayar.springboot.util.foreachOperator;
 
 import java.util.ArrayList;
 import java.util.List;
