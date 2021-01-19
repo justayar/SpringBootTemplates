@@ -1,0 +1,6 @@
+language: java
+jdk: oraclejdk11
+ 
+script:
+- mvn clean install -B
+- mvn test

@@ -1,0 +1,32 @@
+server:
+  port: 8090
+
+covidApiProvider:
+  serviceUrl: https://api.covid19api.com
+  accessToken: 5cf9dfd5-3449-485e-b5ae-70a60e997864
+
+csvFilePath: CovidCountryData.csv
+
+
+
+spring:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: admin
+    password: admin
+
+  batch:
+    job:
+      enabled: false
+
+  jackson:
+    mapper:
+      accept_case_insensitive_properties: true
+
