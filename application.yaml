@@ -1,1 +1,3 @@
-market.base.url : https://api.cryptonator.com/api/ticker/
+market.url : https://api.cryptonator.com/api/ticker/
+market.base : btc
+market.target : usd
