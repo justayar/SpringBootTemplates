@@ -1,0 +1,16 @@
+server:
+  port: 9001
+spring:
+  cloud:
+    config:
+      uri: http://localhost:9000
+      username: config_admin
+      password: Pass_1234
+  application:
+    name: ticker
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
