@@ -44,7 +44,7 @@ public class SwaggerConfig {
     }
 
     private Contact getContact(){
-        return new Contact("Can Emre Ayar","https://github.com/justayar/ForeignExchange","canemreayar@gmail.com");
+        return new Contact("Can Emre Ayar","https://github.com/justayar/SpringBootTemplates/","canemreayar@gmail.com");
     }
 
 }
