@@ -1,0 +1,10 @@
+# Single instance Eureka Server, Eureka Client Configuration
+spring:
+  application:
+    name: eureka-client-demo
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

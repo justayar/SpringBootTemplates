@@ -1,0 +1,19 @@
+# Single instance of Eureka server
+spring:
+  profiles:
+    active: default
+  application:
+    name: eureka-server
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: default-eureka
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+
+

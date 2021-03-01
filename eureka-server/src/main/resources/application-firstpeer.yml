@@ -1,0 +1,16 @@
+# First peer of Eureka server cluster
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: first-peer
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://second-peer:8762/eureka/,http://third-peer:8763/eureka/

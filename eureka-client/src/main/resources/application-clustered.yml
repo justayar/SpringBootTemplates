@@ -1,0 +1,10 @@
+# Eureka Cluster Server, Eureka Client Configuration
+spring:
+  application:
+    name: eureka-client-demo
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://first-peer:8761/eureka/,http://second-peer:8762/eureka/,http://third-peer:8763/eureka/
