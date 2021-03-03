@@ -1,0 +1,30 @@
+server:
+  port: 9095
+
+spring:
+  application:
+    name: admin-service
+  boot:
+    admin:
+      discovery:
+        ignored-services: test
+
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+

@@ -9,39 +9,40 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.justayar.springboot</groupId>
-    <artifactId>eureka-client</artifactId>
+    <artifactId>spring-boot-admin-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>eureka-client</name>
-    <description>Sample Eureka Client for Spring Boot</description>
+    <name>spring-boot-admin-client</name>
+    <description>Spring Boot Admin Client Template</description>
     <properties>
         <java.version>11</java.version>
-        <spring-cloud.version>2020.0.1</spring-cloud.version>
+        <spring-boot-admin.version>2.3.1</spring-boot-admin.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-dependencies</artifactId>
+                <version>${spring-boot-admin.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

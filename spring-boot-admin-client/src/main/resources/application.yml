@@ -1,0 +1,16 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: spring-boot-admin-client
+  boot:
+    admin:
+      client:
+        url: http://localhost:9095
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
