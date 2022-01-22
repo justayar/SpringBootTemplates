@@ -63,11 +63,11 @@ mutation {
 ```
 {
   getAllBrands(skip: 0, take: 5) {
-  	  id
+      id
       name
       foundedBy
       createdAt
-	}
+  }
 }
 ```
 ### Adding new vehicle with mutation
@@ -118,7 +118,7 @@ mutation {
 ```
 {
   getVehiclesByBrand(brandId: "???" ) {
-  	 id
+     id
      name
      horsePower
      bodyMass
@@ -132,7 +132,7 @@ mutation {
 ```
 {
   getAllVehicles(skip: 0, take: 5) {
-  	  id
+     id
      name
      horsePower
      bodyMass
