@@ -1,0 +1,6 @@
+type Query {
+    getBrandById(id: ID!): Brand!
+    getBrandByName(name: String!): Brand!
+    getAllBrands(skip: Int, take: Int): [Brand!]!
+
+}

@@ -1,0 +1,6 @@
+extend type Query {
+    getVehicleById(id: ID!): Vehicle!
+    getVehicleByName(name: String!): Vehicle!
+    getVehiclesByBrand(brandId: ID!): [Vehicle!]!
+    getAllVehicles(skip: Int, take: Int): [Vehicle!]!
+}

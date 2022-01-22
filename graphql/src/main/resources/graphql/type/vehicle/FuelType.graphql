@@ -1,0 +1,6 @@
+enum FuelType {
+    PETROL,
+    DIESEL,
+    ELECTRIC,
+    LPG
+}

@@ -1,0 +1,7 @@
+input VehicleInput {
+    name: String!
+    horsePower: Int
+    bodyMass: Int
+    fuelType: FuelType
+    brandId: ID!
+}

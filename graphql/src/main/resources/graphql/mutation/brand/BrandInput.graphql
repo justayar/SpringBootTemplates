@@ -1,0 +1,4 @@
+input BrandInput {
+    name: String!
+    foundedBy: String!
+}

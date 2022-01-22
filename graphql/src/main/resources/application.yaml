@@ -1,0 +1,21 @@
+server:
+  port: 8010
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${DATABASE_SERVER_URL:localhost}:${DATABASE_SERVER_PORT:5432}/${DATABASE_NAME:postgres}?ssl=false
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+graphql:
+  tools:
+    schemaLocationPattern: "**/*.graphql"

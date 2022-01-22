@@ -1,0 +1,9 @@
+type Vehicle {
+    id: ID!
+    name: String!
+    horsePower: Int
+    bodyMass: Int
+    fuelType: FuelType
+    createdAt: String
+    brand: Brand
+}

@@ -1,0 +1,6 @@
+type Brand {
+    id: ID!
+    name: String!
+    foundedBy: String!
+    createdAt: String
+}
