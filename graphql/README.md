@@ -62,8 +62,7 @@ mutation {
 
 ```
 {
-  getAllBrands(skip: 0, take: 5) 
-  {
+  getAllBrands(skip: 0, take: 5) {
   	  id
       name
       foundedBy
@@ -118,8 +117,7 @@ mutation {
 
 ```
 {
-  getVehiclesByBrand(brandId: "???" ) 
-  {
+  getVehiclesByBrand(brandId: "???" ) {
   	 id
      name
      horsePower
@@ -133,8 +131,7 @@ mutation {
 
 ```
 {
-  getAllVehicles(skip: 0, take: 5) 
-  {
+  getAllVehicles(skip: 0, take: 5) {
   	  id
      name
      horsePower
